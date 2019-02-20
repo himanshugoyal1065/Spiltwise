@@ -1,0 +1,65 @@
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "name": "Himanshu Goyal",
+  "userName": "himanshu",
+  "password": "hello123",
+  "email": "himanshu@gmail.com",
+  "mobileNo": "9807865428",
+  "balance": 0
+  }
+
+###
+
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "name": "Arpit Srivastava",
+  "userName": "arpit",
+  "password": "hello123",
+  "email": "arpit@gmail.com",
+  "mobileNo": "7017572709",
+  "balance": 0
+}
+
+###
+
+GET http://localhost:8080/user/40288184690b8cfd01690b8d78540000
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/user
+Content-Type: application/json
+
+###
+
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "name": "Shivansh Bhatt",
+  "userName": "shivansh",
+  "password": "hello123",
+  "email": "shivansh@gmail.com",
+  "mobileNo": "9807659083",
+  "balance": 0
+}
+
+###
+
+PUT http://localhost:8080/user/40288184690b8cfd01690b8d78540000
+Content-Type: application/json
+
+{
+  "name": "Shivanshesh"
+  }
+
+###
+
+DELETE http://localhost:8080/user/40288184690b8cfd01690b8d78540000
+Content-Type: application/json
+
+###
