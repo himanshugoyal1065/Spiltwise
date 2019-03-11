@@ -5,20 +5,22 @@ import lombok.NonNull;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 public interface DataService<V extends BaseVo<V>> {
 
     @NonNull
-    Flux<V> findAll();
+    List<V> findAll();
 
     @NonNull
-    Mono<V> find(String uuid);
+    V find(String uuid);
 
     @NonNull
-    Mono<V> create(V vo);
+    V create(V vo);
 
     @NonNull
-    Mono<V> update(String uuid, V vo);
+    V update(String uuid, V vo);
 
     @NonNull
-    Mono<Boolean> delete(String uuid);
+    Boolean delete(String uuid);
 }

@@ -24,48 +24,62 @@ public abstract class DataServiceImpl<T extends BaseEntity, V extends BaseVo<V>>
 
     @NonNull
     @Override
-    public Flux<V> findAll() {
+    public List<V> findAll() {
         List<T> listOfEntity = repository.findAll();
         List<V> listOfVo = new ArrayList<>();
         for(T t: listOfEntity) {
             listOfVo.add(convertor.convertEntityToVo(t));
         }
-        return Flux.fromIterable(listOfVo);
+        return listOfVo;
     }
 
     @NonNull
     @Override
-    public Mono<V> find(String uuid) {
+    public V find(String uuid) {
         if(repository.findById(uuid).isPresent()) {
-            return Mono.just(repository.findById(uuid).get())
-                    .flatMap(t -> Mono.just(convertor.convertEntityToVo(t)));
+//            return Mono.just(repository.findById(uuid).get())
+//                    .flatMap(t -> Mono.just(convertor.convertEntityToVo(t)));
+            return convertor.convertEntityToVo(repository.findById(uuid).get());
         }
         throw new NotFoundException("Record not found in database");
     }
 
+
     @NonNull
     @Override
-    public Mono<V> create(V vo) {
-        return Mono.just(convertor.convertVoToEntity(vo))
-                .flatMap(t -> Mono.just(repository.save(t)))
-                .flatMap(e -> Mono.just(convertor.convertEntityToVo(e)));
+    public V create(V vo) {
+//        return Mono.just(convertor.convertVoToEntity(vo))
+//                .flatMap(t -> Mono.just(repository.save(t)))
+//                .flatMap(e -> Mono.just(convertor.convertEntityToVo(e)));
+
+        return convertor.convertEntityToVo(repository.save(convertor.convertVoToEntity(vo)));
     }
 
     @NonNull
     @Override
-    public Mono<V> update(String uuid, V vo) {
-        return Mono.just(repository.findById(uuid).get())
-                .flatMap(t -> Mono.just(convertor.updateEntityFromVo(t, vo)))
-                .flatMap(e -> Mono.just(repository.save(e)))
-                .flatMap(x -> Mono.just(convertor.convertEntityToVo(x)));
+    public V update(String uuid, V vo) {
+//        return Mono.just(repository.findById(uuid).get())
+//                .flatMap(t -> Mono.just(convertor.updateEntityFromVo(t, vo)))
+//                .flatMap(e -> Mono.just(repository.save(e)))
+//                .flatMap(x -> Mono.just(convertor.convertEntityToVo(x)));
+         T t=repository.findById(uuid).get();
+         return convertor.convertEntityToVo(convertor.updateEntityFromVo(t,vo));
+
     }
 
     @NonNull
     @Override
-    public Mono<Boolean> delete(String uuid) {
-        return Mono.fromSupplier(() -> {
+    public Boolean delete(String uuid) {
+//        return Mono.fromSupplier(() -> {
+//            repository.deleteById(uuid);
+//            return true;
+//        });
+        try {
             repository.deleteById(uuid);
             return true;
-        });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

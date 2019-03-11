@@ -1,15 +1,12 @@
 package com.app.splitwise.user_details;
 
+import com.app.splitwise.balance.UserAmountVo;
 import com.app.splitwise.framework.vo.BaseVo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Value;
 import lombok.experimental.Wither;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 @Value
 @Wither
@@ -32,6 +29,12 @@ public class SplitwiseUserVo implements BaseVo<SplitwiseUserVo> {
 
 //    private Date date;
 
-    private BigDecimal balance;
+    /*private BigDecimal balance;
+
+    private Map<String,BigDecimal> usersYouOwe;
+
+    private Map<String,BigDecimal> usersOweYou;*/
+
+    private UserAmountVo amount;
 
 }
