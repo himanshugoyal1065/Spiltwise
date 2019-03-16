@@ -7,8 +7,12 @@ Content-Type: application/json
   "password": "hello123",
   "email": "himanshu@gmail.com",
   "mobileNo": "9807865428",
-  "balance": 0
+  "amount": {
+    "netBalance": 0,
+    "youOweToTheUser": {},
+    "theUserOwesYou": {}
   }
+}
 
 ###
 
@@ -21,12 +25,16 @@ Content-Type: application/json
   "password": "hello123",
   "email": "arpit@gmail.com",
   "mobileNo": "7017572709",
-  "balance": 0
+  "amount": {
+    "netBalance": 0,
+    "youOweToTheUser": {},
+    "theUserOwesYou": {}
+  }
 }
 
 ###
 
-GET http://localhost:8080/user/40288184690b8cfd01690b8d78540000
+GET http://localhost:8080/user/40288184690beb9801690bebc2650001
 Content-Type: application/json
 
 ###
@@ -50,16 +58,118 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:8080/user/40288184690b8cfd01690b8d78540000
+PUT http://localhost:8080/user/40288184690beb9801690bebc2650001
 Content-Type: application/json
 
 {
   "name": "Shivanshesh"
-  }
+}
 
 ###
 
 DELETE http://localhost:8080/user/40288184690b8cfd01690b8d78540000
 Content-Type: application/json
+
+###
+
+
+POST http://localhost:8080/person
+Content-Type: application/json
+
+{
+  "name": "A",
+  "age": 1,
+  "address": [
+    {
+      "pinCode": 60096,
+      "country": "India"
+    },
+    {
+      "pinCode": 60091,
+      "country": "Bharat"
+    }
+  ]
+}
+
+###
+
+POST http://localhost:8080/parents
+Content-Type: application/json
+
+{
+  "name": "Himanshu",
+  "surname": "Goyal",
+  "persons": [
+    {
+    }
+  ]
+}
+
+###
+
+POST http://localhost:8080/transaction
+Content-Type: application/json
+
+{
+  "description": "check transaction",
+  "userPaid": {
+    "uuid": "402871a76928a4a9016928a50ae40001",
+    "name": "Arpit Srivastava",
+    "userName": "arpit",
+    "password": "hello123",
+    "email": "arpit@gmail.com",
+    "mobileNo": "7017572709",
+    "balance": 0
+  },
+  "transactionAmount": 200,
+  "usersInvovled": [
+    {
+      "uuid": "402871a76928a4a9016928a4f3d80000",
+      "name": "Himanshu Goyal",
+      "userName": "himanshu",
+      "password": "hello123",
+      "email": "himanshu@gmail.com",
+      "mobileNo": "9807865428",
+      "balance": 0
+    },
+    {
+      "uuid": "402871a76928a4a9016928a50ae40001",
+      "name": "Arpit Srivastava",
+      "userName": "arpit",
+      "password": "hello123",
+      "email": "arpit@gmail.com",
+      "mobileNo": "7017572709",
+      "balance": 0
+    }
+  ]
+}
+
+###
+
+POST http://localhost:8080/parents
+Content-Type: application/json
+
+{
+  "name": "Arpit",
+  "age": 22,
+  "address": {
+    "address1": {
+      "country": "India",
+      "pinCode": 2019
+    }
+  }
+}
+
+###
+
+POST http://localhost:8080/transaction
+Content-Type: application/json
+
+{
+ "description":"transaction by Himanshu 5",
+  "userPaid": "himanshu",
+  "transactionAmount": 50,
+  "usersInvovled": ["himanshu","arpit"]
+}
 
 ###

@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<SplitwiseUserDetails, String> {
+
+    SplitwiseUserDetails findByUserName(String userName);
 }
