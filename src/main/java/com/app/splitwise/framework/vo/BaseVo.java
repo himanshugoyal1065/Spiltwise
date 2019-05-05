@@ -2,7 +2,7 @@ package com.app.splitwise.framework.vo;
 
 public interface BaseVo<V> {
 
-    V withUuid(String uuid);
+    V withUuid(int uuid);
 
-    String getUuid();
+    int getUuid();
 }

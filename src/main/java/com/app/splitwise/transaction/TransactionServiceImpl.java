@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class TransactionServiceImplTestSuite extends DataServiceImpl<Transaction,TransactionVo> implements TransactionService {
+public class TransactionServiceImpl extends DataServiceImpl<Transaction,TransactionVo> implements TransactionService {
 
     private TransactionRepository transactionRepository;
 
@@ -23,7 +23,7 @@ public class TransactionServiceImplTestSuite extends DataServiceImpl<Transaction
     private UserService userService;
 
     private UserConvertor userConvertor;
-    public TransactionServiceImplTestSuite(TransactionRepository transactionRepository, TransactionConvertor transactionConvertor, UserService userService) {
+    public TransactionServiceImpl(TransactionRepository transactionRepository, TransactionConvertor transactionConvertor, UserService userService) {
         super(transactionRepository, transactionConvertor);
         this.transactionConvertor = transactionConvertor;
         this.transactionRepository = transactionRepository;

@@ -19,7 +19,7 @@ public interface DataService<V extends BaseVo<V>> {
     V create(V vo);
 
     @NonNull
-    V update(String uuid, V vo);
+    V update(Integer uuid, V vo);
 
     @NonNull
     Boolean delete(String uuid);

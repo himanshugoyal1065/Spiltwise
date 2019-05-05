@@ -15,9 +15,8 @@ import java.util.Date;
 public abstract class BaseEntity {
 
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    private String uuid;
+    @GeneratedValue
+    private int uuid;
 
     private String date;
 

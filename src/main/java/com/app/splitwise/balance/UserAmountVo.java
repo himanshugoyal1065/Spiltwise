@@ -13,6 +13,11 @@ import java.util.Map;
 @Builder(toBuilder = true)
 @JsonDeserialize(builder = UserAmountVo.UserAmountVoBuilder.class)
 public class UserAmountVo {
+    public UserAmountVo(BigDecimal netBalance, Map<String, BigDecimal> youWillGiveMoneyToUser, Map<String, BigDecimal> userWillGiveYouMoney) {
+        this.netBalance = netBalance;
+        this.youWillGiveMoneyToUser = youWillGiveMoneyToUser;
+        this.userWillGiveYouMoney = userWillGiveYouMoney;
+    }
 
     private BigDecimal netBalance;
 

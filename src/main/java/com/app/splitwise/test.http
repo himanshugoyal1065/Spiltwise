@@ -9,8 +9,8 @@ Content-Type: application/json
   "mobileNo": "9807865428",
   "amount": {
     "netBalance": 0,
-    "youOweToTheUser": {},
-    "theUserOwesYou": {}
+    "youWillGiveMoneyToUser": {},
+    "userWillGiveYouMoney": {}
   }
 }
 
@@ -27,8 +27,8 @@ Content-Type: application/json
   "mobileNo": "7017572709",
   "amount": {
     "netBalance": 0,
-    "youOweToTheUser": {},
-    "theUserOwesYou": {}
+    "youWillGiveMoneyToUser": {},
+    "userWillGiveYouMoney": {}
   }
 }
 
@@ -166,9 +166,9 @@ POST http://localhost:8080/transaction
 Content-Type: application/json
 
 {
- "description":"transaction by Himanshu 5",
+ "description":"transaction by Himanshu",
   "userPaid": "himanshu",
-  "transactionAmount": 50,
+  "transactionAmount": 500,
   "usersInvovled": ["himanshu","arpit"]
 }
 

@@ -22,9 +22,10 @@ import java.util.List;
 @JsonDeserialize(builder = TransactionVo.TransactionVoBuilder.class)
 public class TransactionVo implements BaseVo<TransactionVo> {
 
-    String uuid;
+    int uuid;
 //    Date date;
     String description;
+
     String userPaid;
 
     BigDecimal transactionAmount;

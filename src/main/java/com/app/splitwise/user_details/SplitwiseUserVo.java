@@ -14,7 +14,7 @@ import lombok.experimental.Wither;
 @JsonDeserialize(builder = SplitwiseUserVo.SplitwiseUserVoBuilder.class)
 public class SplitwiseUserVo implements BaseVo<SplitwiseUserVo> {
 
-    private String uuid;
+    private int uuid;
 
     private String name;
 

@@ -36,7 +36,7 @@ public abstract class BaseController<V extends BaseVo<V>> {
 
     @NonNull
     @PutMapping("{uuid}")
-    public V update(@PathVariable String uuid, @RequestBody V vo) {
+    public V update(@PathVariable int uuid, @RequestBody V vo) {
         return (V) dataService.update(uuid, vo.withUuid(uuid));
     }
 

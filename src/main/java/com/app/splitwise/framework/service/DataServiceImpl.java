@@ -57,12 +57,12 @@ public abstract class DataServiceImpl<T extends BaseEntity, V extends BaseVo<V>>
 
     @NonNull
     @Override
-    public V update(String uuid, V vo) {
+    public V update(Integer uuid, V vo) {
 //        return Mono.just(repository.findById(uuid).get())
 //                .flatMap(t -> Mono.just(convertor.updateEntityFromVo(t, vo)))
 //                .flatMap(e -> Mono.just(repository.save(e)))
 //                .flatMap(x -> Mono.just(convertor.convertEntityToVo(x)));
-         T t=repository.findById(uuid).get();
+         T t=repository.findById(String.valueOf(uuid)).get();
          return convertor.convertEntityToVo(convertor.updateEntityFromVo(t,vo));
 
     }
