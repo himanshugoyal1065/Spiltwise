@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class TransactionServiceImpl extends DataServiceImpl<Transaction,TransactionVo> implements TransactionService {
+public class TransactionServiceImplTestSuite extends DataServiceImpl<Transaction,TransactionVo> implements TransactionService {
 
     private TransactionRepository transactionRepository;
 
@@ -23,7 +23,7 @@ public class TransactionServiceImpl extends DataServiceImpl<Transaction,Transact
     private UserService userService;
 
     private UserConvertor userConvertor;
-    public TransactionServiceImpl(TransactionRepository transactionRepository, TransactionConvertor transactionConvertor, UserService userService) {
+    public TransactionServiceImplTestSuite(TransactionRepository transactionRepository, TransactionConvertor transactionConvertor, UserService userService) {
         super(transactionRepository, transactionConvertor);
         this.transactionConvertor = transactionConvertor;
         this.transactionRepository = transactionRepository;
@@ -44,13 +44,13 @@ public class TransactionServiceImpl extends DataServiceImpl<Transaction,Transact
         BigDecimal amountPaid=transactionVo.getTransactionAmount();
         BigDecimal amountSplited=amountPaid.divide(new BigDecimal(usersInvovled.size()));
         Map<String,BigDecimal> userPaidMap=new HashMap<>();
-        Map<String,BigDecimal> userInvMap=new HashMap<>();
+        Map<String,BigDecimal> userInvovledMap=new HashMap<>();
         for(SplitwiseUserVo userInv:usersInvovled){
-            if(!userInv.getUuid().equalsIgnoreCase(userPaid.getUuid())){
+            if(userInv.getUuid() != userPaid.getUuid()){
 
                 System.out.println("the user involved "+ userInv.getUserName() +"-- "+"the user paid "+userPaid.getUserName());
                 userPaidMap=userPaid.getAmount().getUserWillGiveYouMoney();
-                userInvMap=userInv.getAmount().getYouWillGiveMoneyToUser();
+                userInvovledMap=userInv.getAmount().getYouWillGiveMoneyToUser();
 
                 // amount is added to the user who paid and it is added to each user who owes him this money
                 if(userPaidMap.get(userInv.getUserName())==null){
@@ -62,16 +62,16 @@ public class TransactionServiceImpl extends DataServiceImpl<Transaction,Transact
                 }
 
                 //amount is deducted(or negactive amount is added for the user who owe the user who paid the amount
-                if(userInvMap.get(userPaid.getUserName())==null){
-                    userInvMap.put(userPaid.getUserName(),amountSplited.negate());
+                if(userInvovledMap.get(userPaid.getUserName())==null){
+                    userInvovledMap.put(userPaid.getUserName(),amountSplited.negate());
                 }
                 else{
-                    BigDecimal amountPresent= userInvMap.get(userPaid.getUserName());
-                    userInvMap.put(userPaid.getUserName(),amountPresent.add(amountSplited.negate()));
+                    BigDecimal amountPresent= userInvovledMap.get(userPaid.getUserName());
+                    userInvovledMap.put(userPaid.getUserName(),amountPresent.add(amountSplited.negate()));
 
                 }
 
-                userInv.getAmount().withYouWillGiveMoneyToUser(userInvMap);
+                userInv.getAmount().withYouWillGiveMoneyToUser(userInvovledMap);
                BigDecimal amountBalance= UserNetBalanceCalculator.calculateNetBalance(userInv);
                 System.out.println(amountBalance);
                 userInv.getAmount().withNetBalance(amountBalance);
