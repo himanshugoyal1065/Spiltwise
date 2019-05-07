@@ -4,6 +4,7 @@ import com.app.splitwise.balance.UserAmount;
 import com.app.splitwise.framework.entity.BaseEntity;
 //import com.app.splitwise.transaction.Transaction;
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -20,6 +21,7 @@ public class SplitwiseUserDetails extends BaseEntity {
 
     @NotNull
     @Size(min = 3, message = "Username should be 3 letters long")
+    @Column(unique = true)
     private String userName;
 
     @Size(min = 6, message = "Password should be atleast 6 letters long")
