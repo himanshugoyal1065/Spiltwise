@@ -48,7 +48,7 @@ public class SplitwiseUserDetails extends BaseEntity {
     @JoinColumn(name = "user_id",referencedColumnName = "uuid")
     private Map<String,BigDecimal> usersOweYou;*/
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserAmount amount;
 
 }
