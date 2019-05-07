@@ -3,12 +3,12 @@ package com.app.splitwise.framework.controller;
 import com.app.splitwise.framework.service.DataService;
 import com.app.splitwise.framework.vo.BaseVo;
 import lombok.NonNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 public abstract class BaseController<V extends BaseVo<V>> {
-
 
     private final DataService dataService;
 
