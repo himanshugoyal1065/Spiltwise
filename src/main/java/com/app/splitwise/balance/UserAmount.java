@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import java.math.BigDecimal;
 import java.util.Map;
 @Entity
@@ -15,9 +16,9 @@ public class UserAmount extends BaseEntity {
 
     private BigDecimal netBalance;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, BigDecimal> youOweToTheUser;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, BigDecimal> theUserOwesYou;
 }

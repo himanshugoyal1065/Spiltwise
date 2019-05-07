@@ -36,14 +36,15 @@ public class TransactionServiceImplTestSuite extends TestCase {
     @Test
     public void testCreateMethod() {
 
-        createUser();
+        createUser("himanshu", "himanshu");
+        createUser("him", "him");
 
         TransactionVo transactionVo = new TransactionVo(
                 1,
                 "himanshu test transaction",
                 "himanshu",
                 new BigDecimal(500),
-                Arrays.asList(new String[]{"himanshu", "Arpit"})
+                Arrays.asList(new String[]{"himanshu", "him"})
         );
 
         TransactionVo transactionVoObtained = transactionService.create(transactionVo);
@@ -51,9 +52,8 @@ public class TransactionServiceImplTestSuite extends TestCase {
         assertNotNull(transactionVoObtained);
     }
 
-    private void createUser() {
-        SplitwiseUserVo userVo = userTestData.createData();
-        userTestData.createUser(userService);
+    private void createUser(String inName, String inUserName) {
+        userTestData.createUser(userService, inName, inUserName);
     }
 
     UserTestData userTestData = new UserTestData();
