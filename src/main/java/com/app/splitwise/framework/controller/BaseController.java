@@ -13,6 +13,7 @@ public abstract class BaseController<V extends BaseVo<V>> {
     private final DataService dataService;
 
     public BaseController(DataService dataService) {
+        System.out.println("dataService intialized "+ dataService);
         this.dataService = dataService;
     }
 
@@ -31,6 +32,7 @@ public abstract class BaseController<V extends BaseVo<V>> {
     @NonNull
     @PostMapping("")
     public V create(@RequestBody V vo) {
+        System.out.println("called the create method");
         return (V) dataService.create(vo);
     }
 

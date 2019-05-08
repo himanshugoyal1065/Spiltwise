@@ -1,5 +1,6 @@
 package com.app.splitwise.transaction;
 
+import com.app.splitwise.balance.UserAmountVo;
 import com.app.splitwise.balance.UserNetBalanceCalculator;
 import com.app.splitwise.framework.service.DataServiceImpl;
 import com.app.splitwise.user_details.SplitwiseUserVo;
@@ -74,14 +75,19 @@ public class TransactionServiceImpl extends DataServiceImpl<Transaction,Transact
                 userInv.getAmount().withYouWillGiveMoneyToUser(userInvovledMap);
                BigDecimal amountBalance= UserNetBalanceCalculator.calculateNetBalance(userInv);
                 System.out.println(amountBalance);
-                userInv.getAmount().withNetBalance(amountBalance);
+                UserAmountVo userInvAmount = userInv.getAmount();
+                userInvAmount = userInvAmount.withNetBalance(amountBalance);
+                userInv.withAmount(userInvAmount);
+                //maybe we have to persist the user again to the the amount reflected. (using update statement)
             }
         }
 
         userPaid.getAmount().withUserWillGiveYouMoney(userPaidMap);
         BigDecimal amountBalance= UserNetBalanceCalculator.calculateNetBalance(userPaid);
         System.out.println(amountBalance);
-        userPaid.getAmount().withNetBalance(amountBalance);
+        UserAmountVo userPaidAmount = userPaid.getAmount();
+        userPaidAmount = userPaidAmount.withNetBalance(amountBalance);
+        userPaid.withAmount(userPaidAmount);
 
     //TODO update the balance of the users accordinly(only for the current user)
         // one simple method could be use on list amongst them and calculate the net amount
