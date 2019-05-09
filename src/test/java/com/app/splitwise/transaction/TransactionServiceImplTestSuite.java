@@ -39,15 +39,14 @@ public class TransactionServiceImplTestSuite extends TestCase {
         createUser("himanshu", "himanshu");
         createUser("him", "him");
 
-        TransactionVo transactionVo = new TransactionVo(
-                1,
-                "himanshu test transaction",
-                "himanshu",
-                new BigDecimal(500),
-                Arrays.asList(new String[]{"himanshu", "him"})
-        );
-
-        TransactionVo transactionVoObtained = transactionService.create(transactionVo);
+        TransactionVo transactionVo1 = TransactionVo.builder()
+                                            .uuid(1)
+                                            .description("himanshu test description")
+                                            .userPaid("himanshu")
+                                            .transactionAmount(new BigDecimal(500))
+                                            .usersInvovled( Arrays.asList(new String[]{"himanshu", "him"}))
+                                            .build();
+        TransactionVo transactionVoObtained = transactionService.create(transactionVo1);
 
         assertNotNull(transactionVoObtained);
     }
