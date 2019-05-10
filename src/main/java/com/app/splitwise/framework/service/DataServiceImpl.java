@@ -14,10 +14,10 @@ import java.util.List;
 
 public abstract class DataServiceImpl<T extends BaseEntity, V extends BaseVo<V>> implements DataService<V> {
 
-    private final JpaRepository<T, String> repository;
+    private final JpaRepository<T, Integer> repository;
     private final BaseConvertor<T, V> convertor;
 
-    public DataServiceImpl(JpaRepository<T, String> jpaRepository, BaseConvertor<T, V> baseConvertor) {
+    public DataServiceImpl(JpaRepository<T, Integer> jpaRepository, BaseConvertor<T, V> baseConvertor) {
         this.repository = jpaRepository;
         this.convertor = baseConvertor;
     }
@@ -35,7 +35,7 @@ public abstract class DataServiceImpl<T extends BaseEntity, V extends BaseVo<V>>
 
     @NonNull
     @Override
-    public V find(String uuid) {
+    public V find(Integer uuid) {
         if(repository.findById(uuid).isPresent()) {
 //            return Mono.just(repository.findById(uuid).get())
 //                    .flatMap(t -> Mono.just(convertor.convertEntityToVo(t)));
@@ -62,14 +62,14 @@ public abstract class DataServiceImpl<T extends BaseEntity, V extends BaseVo<V>>
 //                .flatMap(t -> Mono.just(convertor.updateEntityFromVo(t, vo)))
 //                .flatMap(e -> Mono.just(repository.save(e)))
 //                .flatMap(x -> Mono.just(convertor.convertEntityToVo(x)));
-         T t=repository.findById(String.valueOf(uuid)).get();
+         T t=repository.findById(uuid).get();
          return convertor.convertEntityToVo(convertor.updateEntityFromVo(t,vo));
 
     }
 
     @NonNull
     @Override
-    public Boolean delete(String uuid) {
+    public Boolean delete(Integer uuid) {
 //        return Mono.fromSupplier(() -> {
 //            repository.deleteById(uuid);
 //            return true;

@@ -79,6 +79,7 @@ public class TransactionServiceImpl extends DataServiceImpl<Transaction,Transact
                 userInvAmount = userInvAmount.withNetBalance(amountBalance);
                 userInv.withAmount(userInvAmount);
                 //maybe we have to persist the user again to the the amount reflected. (using update statement)
+                userService.update(userInv.getUuid(), userInv);
             }
         }
 
@@ -88,6 +89,7 @@ public class TransactionServiceImpl extends DataServiceImpl<Transaction,Transact
         UserAmountVo userPaidAmount = userPaid.getAmount();
         userPaidAmount = userPaidAmount.withNetBalance(amountBalance);
         userPaid.withAmount(userPaidAmount);
+        userService.update(userPaid.getUuid(), userPaid);
 
     //TODO update the balance of the users accordinly(only for the current user)
         // one simple method could be use on list amongst them and calculate the net amount

@@ -25,7 +25,7 @@ public abstract class BaseController<V extends BaseVo<V>> {
 
     @NonNull
     @GetMapping("{uuid}")
-    public V findByUuid(@PathVariable String uuid) {
+    public V findByUuid(@PathVariable Integer uuid) {
         return (V) dataService.find(uuid);
     }
 
@@ -38,12 +38,12 @@ public abstract class BaseController<V extends BaseVo<V>> {
 
     @NonNull
     @PutMapping("{uuid}")
-    public V update(@PathVariable int uuid, @RequestBody V vo) {
+    public V update(@PathVariable Integer uuid, @RequestBody V vo) {
         return (V) dataService.update(uuid, vo.withUuid(uuid));
     }
 
     @DeleteMapping("{uuid}")
-    public @NonNull Boolean delete(@PathVariable String uuid) {
+    public @NonNull Boolean delete(@PathVariable Integer uuid) {
         return dataService.delete(uuid);
     }
 }

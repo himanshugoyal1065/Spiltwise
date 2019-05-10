@@ -13,7 +13,7 @@ public interface DataService<V extends BaseVo<V>> {
     List<V> findAll();
 
     @NonNull
-    V find(String uuid);
+    V find(Integer uuid);
 
     @NonNull
     V create(V vo);
@@ -22,5 +22,5 @@ public interface DataService<V extends BaseVo<V>> {
     V update(Integer uuid, V vo);
 
     @NonNull
-    Boolean delete(String uuid);
+    Boolean delete(Integer uuid);
 }
